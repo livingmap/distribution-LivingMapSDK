@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.ios.deployment_target      = '10.0'
   spec.name                       = 'LivingMapSDK'
-  spec.version                    = 'Test-1.4.5'
+  spec.version                    = '1.4.5'
   spec.license                    = { :type => 'Copyright', :text => 'Living Map' }
   spec.homepage                   = 'http://www.livingmap.com'
   spec.authors                    = { 'Living Map' => 'tech@livingmap.com' }
