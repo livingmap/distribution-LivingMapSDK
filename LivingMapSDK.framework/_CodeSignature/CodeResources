@@ -14,15 +14,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		N/WbU85LzMbXQIyabbUjyZ8qV6s=
+		LypZOUpHDvM9VUseaxWa8BqpILQ=
 		</data>
 		<key>LMWebViewController.nib/objects-11.0+.nib</key>
 		<data>
-		vMCg9r255ytZ2Ao6T2T4kOwaGTM=
+		2ifeJROaemuZHAVtJ5iL5lvCL48=
 		</data>
 		<key>LMWebViewController.nib/runtime.nib</key>
 		<data>
-		zVz4PmRgILZOgTguB9DPHPJ0L6o=
+		+TezR+J0W4lUzoKBpHNX1UXvDcc=
 		</data>
 		<key>Modules/LivingMapSDK.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/LivingMapSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		1+mirMfbXvIbWI0Rmszf3I4pS/Q=
+		1tgiB1EqfEncsiEENLV2SOHuJss=
 		</data>
 		<key>Modules/LivingMapSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/LivingMapSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		mnvmklfJDOAvoZ9vGNheLj79yII=
+		qQdMgjv3wjL3VgX4TzmrOkGNpjQ=
 		</data>
 		<key>Modules/LivingMapSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Modules/LivingMapSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		mnvmklfJDOAvoZ9vGNheLj79yII=
+		qQdMgjv3wjL3VgX4TzmrOkGNpjQ=
 		</data>
 		<key>Modules/LivingMapSDK.swiftmodule/armv7-apple-ios.swiftdoc</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Modules/LivingMapSDK.swiftmodule/armv7-apple-ios.swiftmodule</key>
 		<data>
-		1+mirMfbXvIbWI0Rmszf3I4pS/Q=
+		1tgiB1EqfEncsiEENLV2SOHuJss=
 		</data>
 		<key>Modules/LivingMapSDK.swiftmodule/armv7.swiftdoc</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Modules/LivingMapSDK.swiftmodule/armv7.swiftmodule</key>
 		<data>
-		1+mirMfbXvIbWI0Rmszf3I4pS/Q=
+		1tgiB1EqfEncsiEENLV2SOHuJss=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -97,22 +97,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vMCg9r255ytZ2Ao6T2T4kOwaGTM=
+			2ifeJROaemuZHAVtJ5iL5lvCL48=
 			</data>
 			<key>hash2</key>
 			<data>
-			CiPkK8B7wYMSr8lBHRO2JIomiVD/9TG+/DX/48K2sd0=
+			nLecWFCvllf6TPLFBETZ0C4XVexc7Frv0dEflAfSujA=
 			</data>
 		</dict>
 		<key>LMWebViewController.nib/runtime.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zVz4PmRgILZOgTguB9DPHPJ0L6o=
+			+TezR+J0W4lUzoKBpHNX1UXvDcc=
 			</data>
 			<key>hash2</key>
 			<data>
-			8qrKJUVeqLCHUjU0OCmoIG+31zHqbMQPPBevpKddqqk=
+			ib02sIKlpwF7V5rZO2l+Fa5UiAUBtH5PJUbRwEgsoeY=
 			</data>
 		</dict>
 		<key>Modules/LivingMapSDK.swiftmodule/arm.swiftdoc</key>
@@ -130,11 +130,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			1+mirMfbXvIbWI0Rmszf3I4pS/Q=
+			1tgiB1EqfEncsiEENLV2SOHuJss=
 			</data>
 			<key>hash2</key>
 			<data>
-			EmMlqu9Gj9I4ea+tRaeM8inuMS/7htuUGVeEOmg4a+g=
+			eCzm6roKO2uacCm6s5O0TbNa5u1xQIJzSWCOZUPOAVQ=
 			</data>
 		</dict>
 		<key>Modules/LivingMapSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -152,11 +152,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			mnvmklfJDOAvoZ9vGNheLj79yII=
+			qQdMgjv3wjL3VgX4TzmrOkGNpjQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			c+s1Afhh8Lspnh9cw2mmixa/MZqB5wU45BLcaO8Ui7U=
+			5AYirz6AJ6lKTAnE27kRAmJjP1IMTFFLqqt112RUFzQ=
 			</data>
 		</dict>
 		<key>Modules/LivingMapSDK.swiftmodule/arm64.swiftdoc</key>
@@ -174,11 +174,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			mnvmklfJDOAvoZ9vGNheLj79yII=
+			qQdMgjv3wjL3VgX4TzmrOkGNpjQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			c+s1Afhh8Lspnh9cw2mmixa/MZqB5wU45BLcaO8Ui7U=
+			5AYirz6AJ6lKTAnE27kRAmJjP1IMTFFLqqt112RUFzQ=
 			</data>
 		</dict>
 		<key>Modules/LivingMapSDK.swiftmodule/armv7-apple-ios.swiftdoc</key>
@@ -196,11 +196,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			1+mirMfbXvIbWI0Rmszf3I4pS/Q=
+			1tgiB1EqfEncsiEENLV2SOHuJss=
 			</data>
 			<key>hash2</key>
 			<data>
-			EmMlqu9Gj9I4ea+tRaeM8inuMS/7htuUGVeEOmg4a+g=
+			eCzm6roKO2uacCm6s5O0TbNa5u1xQIJzSWCOZUPOAVQ=
 			</data>
 		</dict>
 		<key>Modules/LivingMapSDK.swiftmodule/armv7.swiftdoc</key>
@@ -218,11 +218,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			1+mirMfbXvIbWI0Rmszf3I4pS/Q=
+			1tgiB1EqfEncsiEENLV2SOHuJss=
 			</data>
 			<key>hash2</key>
 			<data>
-			EmMlqu9Gj9I4ea+tRaeM8inuMS/7htuUGVeEOmg4a+g=
+			eCzm6roKO2uacCm6s5O0TbNa5u1xQIJzSWCOZUPOAVQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
