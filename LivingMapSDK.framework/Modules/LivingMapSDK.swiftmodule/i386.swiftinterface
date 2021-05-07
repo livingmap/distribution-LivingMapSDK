@@ -1,0 +1,392 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
+// swift-module-flags: -target i386-apple-ios10.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name LivingMapSDK
+import Accelerate
+import Alamofire
+import CoreBluetooth
+import CoreLocation
+import CoreMotion
+import Foundation
+@_exported import LivingMapSDK
+import NotificationCenter
+import Swift
+import SwiftProtobuf
+import UIKit
+import WebKit
+import simd
+public struct Matrix : Swift.Equatable {
+  public let rows: Swift.Int, columns: Swift.Int
+  public var grid: [Swift.Double]
+  public init(rows: Swift.Int, columns: Swift.Int)
+  public init(grid: [Swift.Double], rows: Swift.Int, columns: Swift.Int)
+  public init(vector: [Swift.Double])
+  public init(vectorOf size: Swift.Int)
+  public init(squareOfSize size: Swift.Int)
+  public init(identityOfSize size: Swift.Int)
+  public init(_ array2d: [[Swift.Double]])
+  public func indexIsValid(forRow row: Swift.Int, column: Swift.Int) -> Swift.Bool
+  public subscript(row: Swift.Int, column: Swift.Int) -> Swift.Double {
+    get
+    set
+  }
+}
+public func == (lhs: LivingMapSDK.Matrix, rhs: LivingMapSDK.Matrix) -> Swift.Bool
+extension Matrix : LivingMapSDK.KalmanInput {
+  public var transposed: LivingMapSDK.Matrix {
+    get
+  }
+  public var additionToUnit: LivingMapSDK.Matrix {
+    get
+  }
+  public var inversed: LivingMapSDK.Matrix {
+    get
+  }
+  public var determinant: Swift.Double {
+    get
+  }
+  public func additionalMatrix(row: Swift.Int, column: Swift.Int) -> LivingMapSDK.Matrix
+}
+public func + (lhs: LivingMapSDK.Matrix, rhs: LivingMapSDK.Matrix) -> LivingMapSDK.Matrix
+public func - (lhs: LivingMapSDK.Matrix, rhs: LivingMapSDK.Matrix) -> LivingMapSDK.Matrix
+public func * (lhs: LivingMapSDK.Matrix, rhs: LivingMapSDK.Matrix) -> LivingMapSDK.Matrix
+public func * (lhs: LivingMapSDK.Matrix, rhs: Swift.Double) -> LivingMapSDK.Matrix
+public func * (lhs: Swift.Double, rhs: LivingMapSDK.Matrix) -> LivingMapSDK.Matrix
+extension Matrix : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+open class LMPPSService {
+  public init()
+  public func initWithParameters(serviceUrl: Swift.String)
+  public func startScanning()
+  public func stopScanning()
+  public func isScanning()
+  public func setGeofenceStatus(insideGeofence: Swift.Bool)
+  public func setRouteHeading(heading: Swift.Double)
+  public func setRouteActive(route: Swift.Bool)
+  public func requestLocationOneTime()
+  public func fireCustomEvent(broadcastFunctionID: Swift.String)
+  public func startLogging()
+  public func stopLogging()
+  public func isLogging()
+  public func logCustomEvent(eventId: Swift.String, event: Swift.String)
+  public func getDebugWifiLocations()
+  public func clearDebugWifiLocations()
+  public func isRouteActive()
+  public func setWifiDebugBlueDotActive(active: Swift.Bool)
+  public func isWifiDebugBlueDotActive()
+  @objc deinit
+}
+public enum WalkingSpeedStatus : Swift.String {
+  case Stopped
+  case Slow
+  case Fast
+  public typealias RawValue = Swift.String
+  public init?(rawValue: Swift.String)
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class LivingMapErrorHandler {
+  public static func logError(error: Foundation.NSError)
+  @objc deinit
+}
+public class RoutingRequestMetadataOptions : Swift.Codable {
+  public init(destinationAreaName: Swift.String?, destinationName: Swift.String?)
+  @objc deinit
+  required public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@objc @_hasMissingDesignatedInitializers public class Beacon : ObjectiveC.NSObject {
+  @objc deinit
+  @objc override dynamic public init()
+}
+@_hasMissingDesignatedInitializers public class LivingMapLocation {
+  final public let easting: Swift.Double
+  final public let northing: Swift.Double
+  public var accuracy: Swift.Double
+  public var gyroHeading: Swift.Double?
+  public var heading: Swift.Double
+  public var floor: Swift.Int32
+  public var deviceId: Swift.String?
+  public var journeyId: Swift.Int?
+  public init(easting: Swift.Double, northing: Swift.Double, accuracy: Swift.Double, floor: Swift.Int32, heading: Swift.Double)
+  public func locationString() -> Swift.String
+  public func setDeviceId(_ deviceId: Swift.String)
+  public func setJourneyId(_ journeyId: Swift.Int)
+  public func distanceTo(location: LivingMapSDK.LivingMapLocation) -> Swift.Double
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DebugInfo {
+  public func setWalkingSpeedStatus(_ status: Swift.String)
+  public func setPressureStatus(_ status: Swift.String)
+  public func setStepCount(_ stepCount: Swift.Int)
+  public func setLocationAttributes(_ location: CoreLocation.CLLocation)
+  public func getDebugInfoAsString() -> Swift.String
+  @objc deinit
+}
+public typealias CustomEventAPICallback = (Foundation.NSDictionary?) -> Swift.Void
+public protocol LivingMapLocationListener : AnyObject {
+  func locationReceived(location: LivingMapSDK.LivingMapLocation)
+}
+public struct KalmanFilter<Type> : LivingMapSDK.KalmanFilterType where Type : LivingMapSDK.KalmanInput {
+  public let stateEstimatePrior: Type
+  public let errorCovariancePrior: Type
+  public init(stateEstimatePrior: Type, errorCovariancePrior: Type)
+  public func predict(stateTransitionModel: Type, controlInputModel: Type, controlVector: Type, covarianceOfProcessNoise: Type) -> LivingMapSDK.KalmanFilter<Type>
+  public func update(measurement: Type, observationModel: Type, covarienceOfObservationNoise: Type) -> LivingMapSDK.KalmanFilter<Type>
+  public typealias Input = Type
+}
+public protocol LivingMapInterface : LivingMapSDK.LivingMapEvents {
+  func pressureUpdated(pressure: Swift.String)
+  func headingUpdated(heading: Swift.Double)
+  func walkingSpeedUpdated(walkingSpeed: LivingMapSDK.WalkingSpeedStatus)
+  func updateDebugInfo(_ debugInfo: LivingMapSDK.DebugInfo)
+  func coreLocationInfoUpdated(coreLocation: CoreLocation.CLLocation)
+  func stepCountUpdated(_ stepCount: Swift.Int)
+}
+public enum RoutingError : Swift.Error {
+  case invalidFromOrToRouteLocation
+  public static func == (a: LivingMapSDK.RoutingError, b: LivingMapSDK.RoutingError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+open class RoutingController {
+  public init(sdkManager: LivingMapSDK.LivingMapSDKManager)
+  public func from(location: LivingMapSDK.RouteLocation) -> Self
+  public func to(location: LivingMapSDK.RouteLocation) -> Self
+  public func via(location: LivingMapSDK.RouteLocation) -> Self
+  public func route(options: LivingMapSDK.RoutingRequestMetadataOptions, callback: LivingMapSDK.CustomEventAPICallback? = nil) throws
+  @objc deinit
+}
+public func download(fileURL: Foundation.URL, fallbackRequest: Foundation.URLRequest, handler: @escaping ((Foundation.HTTPURLResponse?, Foundation.Data?) -> Swift.Void)) -> Alamofire.Request?
+public func download(request: Foundation.URLRequest, handler: @escaping ((Foundation.HTTPURLResponse?, Foundation.Data?) -> Swift.Void)) -> Alamofire.Request?
+@_hasMissingDesignatedInitializers open class LivingMapConstants {
+  public static let URL_SCHEME: Swift.String
+  public static let HTTP_ORIGIN_KEY: Swift.String
+  public static let HTTP_ORIGIN_VALUE_TEMPLATE: Swift.String
+  public static let URL_SCHEME_FORMATTED: Swift.String
+  public static let GRID_URL_PREFIX: Swift.String
+  public static let S3_GRID_URL_PREFIX: Swift.String
+  public static let GRID_URL: Swift.String
+  public static let LOCAL_GRID_URL: Swift.String
+  public static let LOCAL_SIMULATION_FILE: Swift.String
+  public static let MAP_URL: Swift.String
+  public static let SCREEN_MODE: Swift.String
+  public static let ROUTING: Swift.String
+  public static let DEBUG_VALUES: Swift.String
+  public static let DISABLE_WEBVIEW_GEOLOCATION: Swift.String
+  public static let WALKING_SPEED_STATUS_FAST: Swift.String
+  public static let WALKING_SPEED_STATUS_SLOW: Swift.String
+  public static let WALKING_SPEED_STATUS_STOPPED: Swift.String
+  public static let PRESSURE_LEVEL: Swift.String
+  public static let PRESSURE_ASCENDING: Swift.String
+  @_hasMissingDesignatedInitializers open class MapStyles {
+    public static let DEFAULT: Swift.String
+    public static let AUTISM: Swift.String
+    public static let DYSLEXIA: Swift.String
+    public static let HIGH_CONTRAST: Swift.String
+    public static let HIGH_CONTRAST_1_25x: Swift.String
+    public static let HIGH_CONTRAST_1_5x: Swift.String
+    @objc deinit
+  }
+  public static let OFFLINE_STORAGE_DIRNAME: Swift.String
+  public static let OFFLINE_MAPURL_SCHEME: Swift.String
+  public static let AppleIndoorFloorsUrl: Swift.String
+  public enum ConnectivityStatus : Swift.String {
+    case ONLINE
+    case OFFLINE
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  @objc deinit
+}
+public protocol KalmanInput {
+  var transposed: Self { get }
+  var inversed: Self { get }
+  var additionToUnit: Self { get }
+  static func + (lhs: Self, rhs: Self) -> Self
+  static func - (lhs: Self, rhs: Self) -> Self
+  static func * (lhs: Self, rhs: Self) -> Self
+}
+public protocol KalmanFilterType {
+  associatedtype Input : LivingMapSDK.KalmanInput
+  var stateEstimatePrior: Self.Input { get }
+  var errorCovariancePrior: Self.Input { get }
+  func predict(stateTransitionModel: Self.Input, controlInputModel: Self.Input, controlVector: Self.Input, covarianceOfProcessNoise: Self.Input) -> Self
+  func update(measurement: Self.Input, observationModel: Self.Input, covarienceOfObservationNoise: Self.Input) -> Self
+}
+public class LivingMapSDKManager {
+  public init()
+  public func createMapComponent(mapConfig: LivingMapSDK.LivingMapConfig) -> WebKit.WKWebView?
+  public func cacheOfflineAssets(for config: LivingMapSDK.LivingMapConfig, callback: @escaping (Swift.Double, Swift.Error?) -> Swift.Void) throws
+  public func clearOfflineAssets(for config: LivingMapSDK.LivingMapConfig) -> Swift.Bool
+  public func initPositioningSystem(mapConfig: LivingMapSDK.LivingMapConfig)
+  public func deinitPositioningSystem()
+  public func deinitMapComponent()
+  public func startMagneticDataCollection(UncalibratedMagUpdateListener: @escaping (CoreMotion.CMMagnetometerData) -> Swift.Void, CalibratedMagUpdateListener: @escaping (CoreMotion.CMCalibratedMagneticField) -> Swift.Void)
+  public func stopMagneticDataCollection()
+  public func startScanning()
+  public func stopScanning()
+  public func startLogging()
+  public func stopLogging()
+  public func isLogging() -> Swift.Bool
+  public func addLivingMapInterface(interface: LivingMapSDK.LivingMapInterface)
+  public func removeLivingMapInterface(interface: LivingMapSDK.LivingMapInterface)
+  public func setRouteHeading(_ heading: Swift.Double)
+  public func setRouteActive(_ routeActive: Swift.Bool)
+  public func requestLocationSubscription(listener: LivingMapSDK.LivingMapLocationListener)
+  public func removeLocationSubscription(listener: LivingMapSDK.LivingMapLocationListener)
+  public func getLivingMapComponent() -> LivingMapSDK.LMWebViewController?
+  public func fireCustomEvent(eventId: Swift.String, eventParameters: Foundation.NSArray)
+  public func logCustomEvent(eventId: Swift.String, event: Swift.String)
+  public func isRouteActive() -> Swift.Bool
+  public func onMapReady()
+  public func destinationReached()
+  public func setDebugLayoutDisplay(showDebugLayout: Swift.Bool)
+  public func isDebugging() -> Swift.Bool
+  public static func getVersion() -> Swift.String
+  public func sendCommandToFrontEnd(command: Swift.String, completionHandler: @escaping (Any?, Swift.Error?) -> Swift.Void)
+  public func sendCommandToFrontEnd(command: Swift.String, returnCallback: @escaping (Any?, Swift.Error?) -> Swift.Void, eventKeyCallbackListener: Swift.String, asyncCallback: @escaping (Foundation.NSArray) -> Swift.Void)
+  public func enableSimulatorMode(logFile: Swift.String)
+  public func stopSimulator()
+  @objc deinit
+}
+public protocol LivingMapEvents : LivingMapSDK.LivingMapLocationListener {
+  func mapReady()
+  func customEvent(eventId: Swift.String, eventParameters: Foundation.NSArray)
+  func destinationReached()
+  func mapClosed()
+  func errorReceived(error: Swift.Error)
+  func onConnectivityStatusChanged(connectivityStatus: LivingMapSDK.LivingMapConstants.ConnectivityStatus)
+}
+public class Coordinate : Swift.Codable {
+  public init(lat: Swift.Double, lon: Swift.Double, floorId: Swift.Int)
+  @objc deinit
+  required public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public class RouteLocation : Swift.Codable {
+  public init(coordinate: LivingMapSDK.Coordinate?, gid: Swift.Int? = nil, type: Swift.String? = nil)
+  @objc deinit
+  required public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct MimeType {
+  public var value: Swift.String {
+    get
+  }
+  public init(path: Swift.String)
+  public init(path: Foundation.NSString)
+  public init(url: Foundation.URL)
+}
+open class LivingMapConfig {
+  final public let mapUrl: Swift.String
+  final public let project: Swift.String
+  final public let environment: Swift.String
+  final public let backendUrl: Swift.String
+  final public let debugMode: Swift.Bool
+  final public let useBeaconLocation: Swift.Bool
+  public var routingMode: Swift.Bool
+  public var viewController: UIKit.UIViewController
+  public var mapSize: CoreGraphics.CGRect
+  public var token: Swift.String
+  public init(mapUrl: Swift.String, project: Swift.String, environment: Swift.String, debugMode: Swift.Bool, routingMode: Swift.Bool, useBeaconLocation: Swift.Bool)
+  @objc deinit
+}
+public enum LivingMapError : Swift.Error {
+  case networkUnreachable(message: Swift.String)
+}
+public enum LivingMapErrorCode : Swift.Int {
+  case CannotConvertLivingMapLocationToJSON
+  case UnknownConnectivityStatus
+  case CouldNotLoadWebView
+  case UnrecognisedEventSentToSDK
+  case ErrorParsingAppleIndoorFloorData
+  case EddystoneBeaconError
+  case ErrorRunningJSCommand
+  case MapHasNotFinishedLoading
+  case ErrorCreatingNewLogFile
+  case ErrorWritingToLog
+  case ErrorPreparingSimulatorCommandList
+  case LiveReportingRegistrationError
+  case NoViewControllerInConfig
+  case RoutingErrorNoDepartureGate
+  case RoutingErrorNoResponse
+  case RoutingErrorInResponse
+  case RoutingErrorCannotRouteToDestination
+  case RoutingGeneralError
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+}
+@_hasMissingDesignatedInitializers public class TuningConstants {
+  @objc deinit
+}
+public protocol Provider : AnyObject {
+  func startUpdating()
+  func stopUpdating()
+}
+@objc @_inheritsConvenienceInitializers open class LMWebViewController : UIKit.UIViewController, WebKit.WKUIDelegate, LivingMapSDK.LivingMapInterface {
+  public var mapUrl: Swift.String?
+  public var mapQueryParams: [Foundation.URLQueryItem]?
+  public func setSDKManager(sdkManager: LivingMapSDK.LivingMapSDKManager)
+  public func onConnectivityStatusChanged(connectivityStatus: LivingMapSDK.LivingMapConstants.ConnectivityStatus)
+  public func getWebView() -> WebKit.WKWebView?
+  public func setGroupedView(deviceId: Swift.String, groupId: Swift.Int, username: Swift.String, password: Swift.String)
+  public func setUngroupedView()
+  @objc override dynamic open func viewDidLoad()
+  public func setMapStyle(mapStyle: Swift.String)
+  public func coreLocationInfoUpdated(coreLocation: CoreLocation.CLLocation)
+  public func stepCountUpdated(_ stepCount: Swift.Int)
+  public func pressureUpdated(pressure: Swift.String)
+  public func walkingSpeedUpdated(walkingSpeed: LivingMapSDK.WalkingSpeedStatus)
+  public func updateDebugInfo(_ debugInfo: LivingMapSDK.DebugInfo)
+  public func headingUpdated(heading: Swift.Double)
+  public func locationReceived(location: LivingMapSDK.LivingMapLocation)
+  public func fromLonLat(longitude: Swift.Double, latitude: Swift.Double, callback: @escaping (Swift.Double, Swift.Double) -> Swift.Void)
+  public func toLonLat(easting: Swift.Double, northing: Swift.Double, callback: @escaping (Swift.Double, Swift.Double) -> Swift.Void)
+  public func mapReady()
+  public func mapClosed()
+  public func errorReceived(error: Swift.Error)
+  public func isMapReady() -> Swift.Bool
+  public func setEventHandler(eventHandler: LivingMapSDK.LivingMapEvents)
+  public func customEvent(eventId: Swift.String, eventParameters: Foundation.NSArray)
+  public func destinationReached()
+  public func sendCommandToFrontEnd(command: Swift.String, completionHandler: @escaping (Any?, Swift.Error?) -> Swift.Void)
+  public func sendCommandToFrontEnd(command: Swift.String, returnCallback: @escaping (Any?, Swift.Error?) -> Swift.Void, eventKeyCallbackListener: Swift.String, asyncCallback: @escaping (Foundation.NSArray) -> Swift.Void)
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LMLog {
+  public var isLogging: Swift.Bool
+  public func writeCoreLocationToLog(location: CoreLocation.CLLocation)
+  public func writeCustomEventToLog(eventId: Swift.String, event: Swift.String)
+  public func writeHeadingToLog(heading: Swift.Double)
+  public func writeGameRotationToLog(rotationMatrix: CoreMotion.CMRotationMatrix, rotationQuaternion: CoreMotion.CMQuaternion)
+  public func writeStepEventToLog(timeStamp: Swift.Double)
+  public func writePressureValueToLog(pressure: Swift.Float)
+  public func writeBeaconScanToLog(beaconScan: [LivingMapSDK.Beacon])
+  public func writeLocationToLog(location: LivingMapSDK.LivingMapLocation, type: Swift.String)
+  @objc deinit
+}
+extension LivingMapSDK.WalkingSpeedStatus : Swift.Equatable {}
+extension LivingMapSDK.WalkingSpeedStatus : Swift.Hashable {}
+extension LivingMapSDK.WalkingSpeedStatus : Swift.RawRepresentable {}
+extension LivingMapSDK.RoutingError : Swift.Equatable {}
+extension LivingMapSDK.RoutingError : Swift.Hashable {}
+extension LivingMapSDK.LivingMapConstants.ConnectivityStatus : Swift.Equatable {}
+extension LivingMapSDK.LivingMapConstants.ConnectivityStatus : Swift.Hashable {}
+extension LivingMapSDK.LivingMapConstants.ConnectivityStatus : Swift.RawRepresentable {}
+extension LivingMapSDK.LivingMapErrorCode : Swift.Equatable {}
+extension LivingMapSDK.LivingMapErrorCode : Swift.Hashable {}
+extension LivingMapSDK.LivingMapErrorCode : Swift.RawRepresentable {}
