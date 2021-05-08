@@ -188,6 +188,8 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
+@import CoreData;
+@import Foundation;
 @import ObjectiveC;
 @import UIKit;
 @import WebKit;
@@ -213,6 +215,23 @@ SWIFT_CLASS("_TtC12LivingMapSDK6Beacon")
 @interface Beacon : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+@class NSEntityDescription;
+@class NSManagedObjectContext;
+
+SWIFT_CLASS_NAMED("LCachedURLResponse")
+@interface LCachedURLResponse : NSManagedObject
+- (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface LCachedURLResponse (SWIFT_EXTENSION(LivingMapSDK))
+@property (nonatomic, copy) NSData * _Nullable data;
+@property (nonatomic, copy) NSString * _Nullable encoding;
+@property (nonatomic, copy) NSString * _Nullable mimeType;
+@property (nonatomic, copy) NSDate * _Nullable timestamp;
+@property (nonatomic, copy) NSString * _Nullable url;
 @end
 
 @class NSBundle;

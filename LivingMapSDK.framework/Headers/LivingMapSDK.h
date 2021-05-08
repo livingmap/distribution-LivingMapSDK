@@ -1,4 +1,11 @@
-#import <UIKit/UIKit.h>
+//
+//  LivingMapSDK.h
+//  LivingMapSDK
+//
+//  Created by Robin Macharg2 on 08/05/2021.
+//
+
+#import <Foundation/Foundation.h>
 
 //! Project version number for LivingMapSDK.
 FOUNDATION_EXPORT double LivingMapSDKVersionNumber;
